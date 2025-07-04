@@ -1,9 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { prisma } from "@/lib/db";
 
-export default function Home() {
+const Home = async () => {
+  const users = await prisma.user.findMany();
   return (
     <div className="font-bold text-rose-500">
-      <Button variant="destructive">click me</Button>
+      {JSON.stringify(users, null, 10)}
     </div>
   );
-}
+};
+
+export default Home;
